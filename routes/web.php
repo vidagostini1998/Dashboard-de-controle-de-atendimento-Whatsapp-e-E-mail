@@ -32,3 +32,4 @@ Route::post('/email/adc/dados',[RegistroController::class,'store'])->name('email
 Route::get('/email/edit/tipo/{id}',[TipoController::class,'edit'])->name('email.edit.tipo');
 Route::post('email/editar/tipo/{id}',[TipoController::class,'update'])->name('email.editar.tipo');
 Route::post('/email/del/tipo/{id}',[TipoController::class,'delete'])->name('email.del.tipo');
+Route::get('/email/relatorio/{id}',[EmailController::class,'show'])->name('email.rel');

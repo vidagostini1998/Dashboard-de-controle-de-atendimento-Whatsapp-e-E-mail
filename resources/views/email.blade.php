@@ -31,7 +31,7 @@
     <div class=" row d-flex justify-content-center border-bottom mb-3 p-2">
         @foreach ($tipos as $tipo)
         <div class="col-3 m-1">
-            <a class="text-decoration-none" href="{{route('whatsapp.rel.filas',$tipo->id)}}">
+            <a class="text-decoration-none" href="{{route('email.rel',$tipo->id)}}">
                 <div class="border rounded bg-info text-white text-center p-1">
                     <h5 class="">{{$tipo->nome}}</h5>
                     <span class="badge">

@@ -31,7 +31,7 @@ class TicketsController extends Controller
     public function relFilas($id){
         //DB::enableQueryLog();
         DB::statement("SET lc_time_names = 'pt_BR'");
-        $filaMes = DB::table('tickets')->select([DB::raw('DATE_FORMAT(createdAt,"%b") AS mes'),DB::raw('COUNT(*) AS total')])->where(DB::raw('YEAR("createdAt")=YEAR(CURDATE())'))->where('queueId','=',$id)->groupBy('mes')->get();
+        $filaMes = DB::table('tickets')->select([DB::raw('DATE_FORMAT(createdAt,"%b") AS mes'),DB::raw('COUNT(*) AS total')])->where('queueId','=',$id)->whereYear('createdAt','=',date('Y'))->groupBy('mes')->get();
         //dd(DB::getQueryLog());
         $nomeFila = DB::table('queues')->where('id','=',$id)->first();
         foreach ($filaMes as $fila) {
@@ -46,7 +46,7 @@ class TicketsController extends Controller
     public function relUsers($id){
         //DB::enableQueryLog();
         DB::statement("SET lc_time_names = 'pt_BR'");
-        $ticketMes = DB::table('tickets')->select([DB::raw('DATE_FORMAT(createdAt,"%b") AS mes'),DB::raw('COUNT(*) AS total')])->where(DB::raw('YEAR("createdAt")=YEAR(CURDATE())'))->where('userId','=',$id)->groupBy('mes')->get();
+        $ticketMes = DB::table('tickets')->select([DB::raw('DATE_FORMAT(createdAt,"%b") AS mes'),DB::raw('COUNT(*) AS total')])->whereYear('createdAt','=',date('Y'))->where('userId','=',$id)->groupBy('mes')->get();
         //dd(DB::getQueryLog());
         $nomeUser = DB::table('users')->where('id','=',$id)->first();
         foreach ($ticketMes as $ticket) {
